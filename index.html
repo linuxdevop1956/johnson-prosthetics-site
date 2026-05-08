@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Johnson Prosthetics & Orthotics</title>
+
+<style>
+:root{
+  --navy:#071b46;
+  --blue:#123c8c;
+  --red:#d62828;
+  --light:#f6f8fb;
+  --ink:#172033;
+  --muted:#5b6475;
+  --card:#fff;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;line-height:1.55}
+a{text-decoration:none;color:inherit}
+
+.topbar{background:var(--navy);color:#fff;font-size:14px;padding:9px 5vw;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.nav{position:sticky;top:0;z-index:20;background:#fff;box-shadow:0 3px 18px #0001;display:flex;align-items:center;justify-content:space-between;padding:16px 5vw}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;color:var(--navy);letter-spacing:.06em}
+.brand-mark{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--red));display:grid;place-items:center;color:#fff;font-weight:900}
+.navlinks{display:flex;gap:22px;align-items:center}
+.navlinks a{color:var(--navy);font-weight:700}
+
+.btn{display:inline-block;background:var(--red);color:#fff;padding:13px 20px;border-radius:999px;font-weight:800;box-shadow:0 8px 20px #d6282833;border:none;cursor:pointer}
+.btn.alt{background:#fff;color:var(--navy)}
+
+.hero{min-height:700px;background:linear-gradient(90deg,rgba(7,27,70,.92),rgba(7,27,70,.58),rgba(7,27,70,.15)),url('assets/clinic-exterior.jpg') center/cover no-repeat;display:grid;align-items:center;padding:80px 5vw;color:#fff}
+.hero-box{max-width:780px}
+.eyebrow{font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#ffdad8}
+.hero h1{font-size:clamp(42px,6vw,78px);line-height:.98;margin:14px 0;text-shadow:0 8px 30px rgba(0,0,0,.45)}
+.hero p{font-size:21px;max-width:650px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+
+.section{padding:82px 5vw}
+.section.light{background:var(--light)}
+.section.dark{background:var(--navy);color:#fff}
+.heading{max-width:850px;margin-bottom:34px}
+.heading h2{font-size:clamp(32px,4vw,52px);line-height:1.05;margin:0 0 12px}
+.heading p{font-size:18px;color:var(--muted);margin:0}
+.dark .heading p{color:#d8def0}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:var(--card);border-radius:24px;overflow:hidden;box-shadow:0 14px 35px #071b4614;border:1px solid #e7eaf0;transition:.25s ease}
+.card:hover{transform:translateY(-6px)}
+.card img{width:100%;height:240px;object-fit:cover;object-position:center top;display:block}
+.card .pad{padding:24px}
+.card h3{margin:0 0 8px;color:var(--navy);font-size:24px}
+.card p{margin:0;color:var(--muted)}
+
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.split img{width:100%;border-radius:30px;box-shadow:0 18px 50px #071b4626;object-fit:cover;object-position:center top;max-height:520px}
+.checklist{display:grid;gap:13px;margin-top:22px}
+.check{background:#fff;border-left:5px solid var(--red);padding:14px 16px;border-radius:12px;box-shadow:0 8px 20px #0000000d}
+
+.quote{font-size:28px;line-height:1.3;font-weight:800;max-width:950px}
+
+.process-wrap{background:#fff;border-radius:30px;box-shadow:0 18px 50px #071b4618;border:1px solid #e7eaf0;padding:36px}
+.process-line{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;position:relative}
+.process-line:before{content:"";position:absolute;top:42px;left:8%;right:8%;height:4px;background:#dce3f0;z-index:0}
+.process-step{position:relative;z-index:1;text-align:center;background:#fff;padding:12px}
+.process-icon{width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--red));color:#fff;display:grid;place-items:center;font-size:34px;margin:0 auto 16px;box-shadow:0 12px 28px #071b4626}
+.process-step h3{margin:0 0 8px;color:var(--navy)}
+.process-step p{margin:0;color:var(--muted);font-size:14px}
+
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.gallery figure{margin:0;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 28px #071b4614;border:1px solid #e7eaf0}
+.gallery img{width:100%;height:270px;object-fit:cover;object-position:center top;display:block}
+.patient-environment-photo{
+  object-fit:cover;
+  object-position:center center;
+}
+
+@media(max-width:900px){
+  .patient-environment-photo{
+    height:180px !important;
+    object-fit:cover;
+    object-position:center center;
+  }
+}
+.gallery figcaption{padding:13px 15px;font-weight:700;color:var(--navy);font-size:15px}
+
+.location-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.location-card{background:#fff;border-radius:24px;padding:24px;box-shadow:0 14px 35px #071b4614}
+.location-card h3{color:var(--navy);margin-top:0}
+.map{width:100%;height:280px;border:0;border-radius:18px;margin-top:16px}
+
+.footer{background:#04132f;color:#fff;padding:34px 5vw;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+
+.message-bubble{position:fixed;right:24px;bottom:24px;width:68px;height:68px;border-radius:50%;background:var(--red);color:#fff;border:none;box-shadow:0 14px 35px rgba(0,0,0,.28);display:flex;align-items:center;justify-content:center;font-size:30px;line-height:1;cursor:pointer;z-index:9999;transition:.25s ease}
+.message-bubble:hover{transform:translateY(-4px)}
+
+.modal{display:none;position:fixed;inset:0;background:rgba(4,19,47,.72);z-index:10000;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal-content{background:#fff;width:100%;max-width:520px;border-radius:24px;padding:28px;box-shadow:0 20px 70px rgba(0,0,0,.35);position:relative}
+.modal-content h2{margin:0 0 8px;color:var(--navy)}
+.modal-content p{color:var(--muted);margin-top:0}
+.close-modal{position:absolute;top:14px;right:16px;background:#eef1f7;border:none;width:38px;height:38px;border-radius:50%;font-size:22px;cursor:pointer}
+input,textarea{width:100%;padding:14px;border:1px solid #d8dde8;border-radius:12px;margin-bottom:12px;font:inherit}
+textarea{min-height:120px}
+.form-note{font-size:13px;color:var(--muted)}
+
+@media(max-width:900px){
+  .navlinks{display:none}
+  .hero{min-height:560px}
+  .grid,.gallery,.split,.location-grid{grid-template-columns:1fr}
+  .process-line{grid-template-columns:1fr}
+  .process-line:before{display:none}
+  .gallery img{height:300px}
+  .topbar{font-size:13px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div>Johnson Prosthetics & Orthotics | Arkansas & Joplin Area Care</div>
+  <div><a href="tel:+14177269964">Joplin: (417) 726-9964</a> · <a href="tel:+14794853366">Fayetteville: (479) 485-3366</a></div>
+</div>
+
+<nav class="nav">
+  <div class="brand">
+    <div class="brand-mark">J</div>
+    <div>JOHNSON<br><small>PROSTHETICS & ORTHOTICS</small></div>
+  </div>
+  <div class="navlinks">
+    <a href="#services">Services</a>
+    <a href="#patients">Patient Care</a>
+    <a href="#process">Process</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#locations">Locations</a>
+  </div>
+  <button class="btn" onclick="openModal()">Request Appointment</button>
+</nav>
+
+<header class="hero">
+  <div class="hero-box">
+    <div class="eyebrow">Personalized prosthetic and orthotic care</div>
+    <h1>Regain mobility. Reclaim independence.</h1>
+    <p>Compassionate clinical care for patients who need prosthetic and orthotic solutions designed around comfort, function, and everyday life.</p>
+    <div class="hero-actions">
+      <button class="btn" onclick="openModal()">Request a Consultation</button>
+      <a class="btn alt" href="#services">Explore Services</a>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="services">
+  <div class="heading">
+    <h2>Comprehensive care built around each patient.</h2>
+    <p>From evaluation and fitting to education, adjustments, and long-term follow-up, our focus is helping patients move safely and confidently.</p>
+  </div>
+
+  <div class="grid">
+    <article class="card">
+      <img src="assets/prosthetic-fitting.jpg" alt="Prosthetic fitting">
+      <div class="pad">
+        <h3>Custom Prosthetics</h3>
+        <p>Evaluation, fitting, and follow-up support for prosthetic devices designed for comfort, alignment, and function.</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="assets/child-walking.jpg" alt="Child with prosthetic care">
+      <div class="pad">
+        <h3>Pediatric Prosthetic Care</h3>
+        <p>Supportive care for children and families, with attention to growth, confidence, and continued adjustment needs.</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="assets/prosthetic-lab.jpg" alt="Prosthetic lab">
+      <div class="pad">
+        <h3>Orthotic & Bracing Solutions</h3>
+        <p>Bracing and orthotic support designed to improve stability, positioning, comfort, and daily function.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section light" id="patients">
+  <div class="split">
+    <div>
+      <div class="heading">
+        <h2>Care that supports the whole journey.</h2>
+        <p>Patients deserve to feel heard, respected, and guided through each step of the prosthetic or orthotic process.</p>
+      </div>
+
+      <div class="checklist">
+        <div class="check">Patient-centered evaluation based on lifestyle, mobility, and clinical needs</div>
+        <div class="check">Custom fitting with attention to comfort, alignment, and function</div>
+        <div class="check">Education for patients, caregivers, and families</div>
+        <div class="check">Ongoing adjustments and follow-up as needs change</div>
+      </div>
+    </div>
+
+    <img src="assets/patient-stairs.jpg" alt="Patient walking on stairs">
+  </div>
+</section>
+
+<section class="section dark">
+  <div class="quote">“Our goal is to help every patient feel supported, capable, and ready for the next step.”</div>
+</section>
+
+<section class="section" id="team">
+  <div class="split">
+    <img src="assets/staff-welcome.jpg" alt="Johnson staff member">
+    <div>
+      <div class="heading">
+        <h2>A local team with professional clinical care.</h2>
+        <p>Johnson Prosthetics & Orthotics combines warm, community-based service with careful attention to each patient’s goals and mobility needs.</p>
+      </div>
+      <button class="btn" onclick="openModal()">Contact Our Team</button>
+    </div>
+  </div>
+</section>
+
+<section class="section light" id="process">
+  <div class="heading">
+    <h2>Our Care Process</h2>
+    <p>From your first consultation to long-term follow-up, we guide each patient through a clear, supportive path toward comfort, function, and mobility.</p>
+  </div>
+
+  <div class="process-wrap">
+    <div class="process-line">
+      <div class="process-step">
+        <div class="process-icon">☑</div>
+        <h3>Consultation</h3>
+        <p>We listen to your needs, goals, daily routine, and referral information.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-icon">👣</div>
+        <h3>Evaluation</h3>
+        <p>We assess mobility, comfort, alignment, and clinical needs.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-icon">⚙</div>
+        <h3>Custom Design</h3>
+        <p>Your prosthetic or orthotic solution is planned for real-life function.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-icon">🔧</div>
+        <h3>Fitting</h3>
+        <p>We focus on comfort, safety, movement, and proper device alignment.</p>
+      </div>
+
+      <div class="process-step">
+        <div class="process-icon">❤</div>
+        <h3>Follow-up</h3>
+        <p>Ongoing adjustments and care help support changing needs over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <div class="heading">
+    <h2>Active Lifestyle & Recovery</h2>
+    <p>Helping patients return to movement, independence, and confidence.</p>
+  </div>
+
+  <div class="gallery">
+    <figure><img src="assets/active-runner.jpg" alt="Runner with prosthetic blade"><figcaption>Performance mobility</figcaption></figure>
+    <figure><img src="assets/forest-runner.jpg" alt="Runner outdoors"><figcaption>Outdoor activity</figcaption></figure>
+    <figure><img src="assets/swimmer-prosthetic.jpg" alt="Swimmer with prosthetic leg"><figcaption>Confidence in motion</figcaption></figure>
+    <figure><img src="assets/basketball-active.jpg" alt="Basketball athlete"><figcaption>Sports and recreation</figcaption></figure>
+  </div>
+</section>
+
+<section class="section light">
+  <div class="heading">
+    <h2>Clinical Care & Patient Support</h2>
+    <p>Precision prosthetic and orthotic care focused on comfort, alignment, and function.</p>
+  </div>
+
+  <div class="gallery">
+    <figure><img src="assets/pediatric-care.jpg" alt="Pediatric care"><figcaption>Pediatric support</figcaption></figure>
+    <figure><img src="assets/office-detail.jpg" alt="Office detail" class="patient-environment-photo"><figcaption>Patient environment</figcaption></figure>
+    <figure><img src="assets/family-team.jpg" alt="Team photo" style="object-position:center top;"><figcaption>Community focused</figcaption></figure>
+    <figure><img src="assets/clinic-exterior.jpg" alt="Clinic exterior"><figcaption>Clinic location</figcaption></figure>
+  </div>
+</section>
+
+<section class="section light" id="locations">
+  <div class="heading">
+    <h2>Locations</h2>
+    <p>Call the location nearest you to request an appointment or ask about referrals, insurance, and next steps.</p>
+  </div>
+
+  <div class="location-grid">
+    <div class="location-card">
+      <h3>Joplin Location</h3>
+      <p><strong>Address:</strong><br>1027 S Main St, Suite LL3<br>Joplin, MO 64801</p>
+      <p><strong>Phone:</strong> <a href="tel:+14177269964">(417) 726-9964</a></p>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=1027+S+Main+St+Suite+LL3+Joplin+MO+64801" target="_blank">Open in Maps</a>
+      <iframe class="map" loading="lazy" src="https://www.google.com/maps?q=1027%20S%20Main%20St%20Suite%20LL3%20Joplin%20MO%2064801&output=embed"></iframe>
+    </div>
+
+    <div class="location-card">
+      <h3>Fayetteville Location</h3>
+      <p><strong>Address:</strong><br>1742 E Joyce Blvd, Suite 1<br>Fayetteville, AR 72703</p>
+      <p><strong>Phone:</strong> <a href="tel:+14794853366">(479) 485-3366</a></p>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=1742+E+Joyce+Blvd+Suite+1+Fayetteville+AR+72703" target="_blank">Open in Maps</a>
+      <iframe class="map" loading="lazy" src="https://www.google.com/maps?q=1742%20E%20Joyce%20Blvd%20Suite%201%20Fayetteville%20AR%2072703&output=embed"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div><strong>Johnson Prosthetics & Orthotics</strong><br>Restoring mobility. Supporting independence.</div>
+  <div><a href="#services">Services</a> · <a href="#gallery">Gallery</a> · <a href="#locations">Locations</a></div>
+</footer>
+
+<button class="message-bubble" onclick="openModal()" aria-label="Send us a message">✉</button>
+
+<div class="modal" id="messageModal">
+  <div class="modal-content">
+    <button class="close-modal" onclick="closeModal()" aria-label="Close message form">×</button>
+    <h2>Send Us a Message</h2>
+    <p>Use this form for general appointment requests only. Please do not include private medical details.</p>
+
+    <form action="https://formsubmit.co/info@johnsonprosthetics.com" method="POST">
+      <input type="hidden" name="_subject" value="Website Appointment Request">
+      <input type="hidden" name="_captcha" value="false">
+      <input name="name" placeholder="Full Name" required>
+      <input name="phone" placeholder="Phone Number">
+      <input name="email" type="email" placeholder="Email Address" required>
+      <textarea name="message" placeholder="How can we help? Please keep this general." required></textarea>
+      <button class="btn" type="submit">Send Message</button>
+    </form>
+
+    <p class="form-note">For urgent medical concerns, call the clinic directly.</p>
+  </div>
+</div>
+
+<script>
+function openModal(){
+  document.getElementById("messageModal").classList.add("open");
+}
+function closeModal(){
+  document.getElementById("messageModal").classList.remove("open");
+}
+document.getElementById("messageModal").addEventListener("click", function(e){
+  if(e.target === this){ closeModal(); }
+});
+</script>
+
+</body>
+</html>
+
