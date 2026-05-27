@@ -1,358 +1,1898 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Johnson Prosthetics & Orthotics</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Johnson Prosthetics & Orthotics — Joplin, Fayetteville & Hot Springs</title>
+  <meta name="description" content="Compassionate prosthetic and orthotic care in Joplin, MO, Fayetteville, AR, and Hot Springs, AR. Custom devices designed around comfort, function, and everyday life." />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-<style>
-:root{
-  --navy:#071b46;
-  --blue:#123c8c;
-  --red:#d62828;
-  --light:#f6f8fb;
-  --ink:#172033;
-  --muted:#5b6475;
-  --card:#fff;
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;line-height:1.55}
-a{text-decoration:none;color:inherit}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.topbar{background:var(--navy);color:#fff;font-size:14px;padding:9px 5vw;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.nav{position:sticky;top:0;z-index:20;background:#fff;box-shadow:0 3px 18px #0001;display:flex;align-items:center;justify-content:space-between;padding:16px 5vw}
-.brand{display:flex;align-items:center;gap:12px;font-weight:900;color:var(--navy);letter-spacing:.06em}
-.brand-mark{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--red));display:grid;place-items:center;color:#fff;font-weight:900}
-.navlinks{display:flex;gap:22px;align-items:center}
-.navlinks a{color:var(--navy);font-weight:700}
+    :root {
+      --navy:    #1d2c5b;
+      --navy-d:  #0f1a3d;
+      --navy-l:  #2d4082;
+      --maroon:  #7a2837;
+      --maroon-d:#5e1d2b;
+      --red:     #b32842;
+      --red-l:   #d63a55;
+      --white:   #ffffff;
+      --cream:   #faf7f2;
+      --gray:    #f4f6f9;
+      --gray-d:  #e1e6ee;
+      --text:    #1f2937;
+      --muted:   #5a6678;
+      --border:  #dbe1ea;
+    }
 
-.btn{display:inline-block;background:var(--red);color:#fff;padding:13px 20px;border-radius:999px;font-weight:800;box-shadow:0 8px 20px #d6282833;border:none;cursor:pointer}
-.btn.alt{background:#fff;color:var(--navy)}
+    html { scroll-behavior: smooth; }
 
-.hero{min-height:700px;background:linear-gradient(90deg,rgba(7,27,70,.92),rgba(7,27,70,.58),rgba(7,27,70,.15)),url('assets/clinic-exterior.jpg') center/cover no-repeat;display:grid;align-items:center;padding:80px 5vw;color:#fff}
-.hero-box{max-width:780px}
-.eyebrow{font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#ffdad8}
-.hero h1{font-size:clamp(42px,6vw,78px);line-height:.98;margin:14px 0;text-shadow:0 8px 30px rgba(0,0,0,.45)}
-.hero p{font-size:21px;max-width:650px}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      line-height: 1.65;
+      background: var(--white);
+    }
 
-.section{padding:82px 5vw}
-.section.light{background:var(--light)}
-.section.dark{background:var(--navy);color:#fff}
-.heading{max-width:850px;margin-bottom:34px}
-.heading h2{font-size:clamp(32px,4vw,52px);line-height:1.05;margin:0 0 12px}
-.heading p{font-size:18px;color:var(--muted);margin:0}
-.dark .heading p{color:#d8def0}
+    img { max-width: 100%; height: auto; display: block; }
 
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.card{background:var(--card);border-radius:24px;overflow:hidden;box-shadow:0 14px 35px #071b4614;border:1px solid #e7eaf0;transition:.25s ease}
-.card:hover{transform:translateY(-6px)}
-.card img{width:100%;height:240px;object-fit:cover;object-position:center top;display:block}
-.card .pad{padding:24px}
-.card h3{margin:0 0 8px;color:var(--navy);font-size:24px}
-.card p{margin:0;color:var(--muted)}
+    /* ─── ANIMATED PARTICLE BACKGROUND IN HERO ─── */
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255,255,255,.4);
+      border-radius: 50%;
+      animation: float linear infinite;
+    }
+    @keyframes float {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+    }
 
-.split{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
-.split img{width:100%;border-radius:30px;box-shadow:0 18px 50px #071b4626;object-fit:cover;object-position:center top;max-height:520px}
-.checklist{display:grid;gap:13px;margin-top:22px}
-.check{background:#fff;border-left:5px solid var(--red);padding:14px 16px;border-radius:12px;box-shadow:0 8px 20px #0000000d}
+    /* ─── ANNOUNCEMENT BAR ─── */
+    .top-bar {
+      background: var(--navy);
+      color: #c9d4ea;
+      font-size: .82rem;
+      padding: .7rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .top-bar a { color: var(--white); text-decoration: none; font-weight: 500; transition: color .2s; }
+    .top-bar a:hover { color: var(--red-l); }
+    .top-bar .right { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+    .top-bar .right .div { color: rgba(255,255,255,.3); }
 
-.quote{font-size:28px;line-height:1.3;font-weight:800;max-width:950px}
+    /* ─── NAV ─── */
+    nav.main {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 1.1rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .brand { display: flex; align-items: center; gap: 1rem; text-decoration: none; }
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      background: var(--maroon);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: 0;
+    }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .brand-name {
+      font-weight: 800;
+      color: var(--navy);
+      font-size: 1.05rem;
+      letter-spacing: 1px;
+    }
+    .brand-tag {
+      font-size: .7rem;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+    nav.main ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+    nav.main ul a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: .92rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    nav.main ul a:hover { color: var(--red); }
+    .nav-cta {
+      background: var(--red) !important;
+      color: var(--white) !important;
+      padding: .65rem 1.3rem;
+      border-radius: 30px;
+      font-weight: 600 !important;
+      transition: background .2s, transform .2s;
+    }
+    .nav-cta:hover { background: var(--maroon) !important; transform: translateY(-1px); }
 
-.process-wrap{background:#fff;border-radius:30px;box-shadow:0 18px 50px #071b4618;border:1px solid #e7eaf0;padding:36px}
-.process-line{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;position:relative}
-.process-line:before{content:"";position:absolute;top:42px;left:8%;right:8%;height:4px;background:#dce3f0;z-index:0}
-.process-step{position:relative;z-index:1;text-align:center;background:#fff;padding:12px}
-.process-icon{width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--red));color:#fff;display:grid;place-items:center;font-size:34px;margin:0 auto 16px;box-shadow:0 12px 28px #071b4626}
-.process-step h3{margin:0 0 8px;color:var(--navy)}
-.process-step p{margin:0;color:var(--muted);font-size:14px}
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-block;
+      padding: .9rem 1.8rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: .92rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all .2s;
+      font-family: inherit;
+    }
+    .btn-red { background: var(--red); color: var(--white); }
+    .btn-red:hover { background: var(--maroon); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(179,40,66,.3); }
+    .btn-navy { background: var(--navy); color: var(--white); }
+    .btn-navy:hover { background: var(--navy-d); transform: translateY(-2px); }
+    .btn-outline-w { background: var(--white); color: var(--text); border: 1px solid var(--border); }
+    .btn-outline-w:hover { border-color: var(--navy); color: var(--navy); }
 
-.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.gallery figure{margin:0;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 28px #071b4614;border:1px solid #e7eaf0}
-.gallery img{width:100%;height:270px;object-fit:cover;object-position:center top;display:block}
-.patient-environment-photo{
-  object-fit:cover;
-  object-position:center center;
-}
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      color: var(--white);
+      padding: 6rem 5%;
+      overflow: hidden;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(15,26,61,.82) 0%, rgba(29,44,91,.68) 60%, rgba(122,40,55,.5) 100%);
+    }
+    .hero-bg.placeholder {
+      background: linear-gradient(135deg, var(--navy-d) 0%, var(--navy) 60%, var(--maroon-d) 100%);
+    }
+    .hero-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+    .hero-eyebrow {
+      color: var(--white);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.3rem;
+      opacity: .85;
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 4.6rem);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 1.4rem;
+      letter-spacing: -1px;
+      max-width: 700px;
+    }
+    .hero p.lede {
+      font-size: 1.05rem;
+      color: #d8e0f0;
+      max-width: 540px;
+      margin-bottom: 2.2rem;
+      line-height: 1.7;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-@media(max-width:900px){
-  .patient-environment-photo{
-    height:180px !important;
-    object-fit:cover;
-    object-position:center center;
-  }
-}
-.gallery figcaption{padding:13px 15px;font-weight:700;color:var(--navy);font-size:15px}
+    /* ─── PRESS STRIP ─── */
+    .press {
+      background: var(--white);
+      padding: 2.5rem 5%;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .press-label {
+      text-align: center;
+      color: var(--muted);
+      font-size: .72rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+    }
+    .press-track-wrap {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    .press-track {
+      display: flex;
+      gap: 4rem;
+      animation: scrollPress 30s linear infinite;
+      width: max-content;
+    }
+    @keyframes scrollPress {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .press-logo {
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      opacity: .55;
+      transition: opacity .2s;
+      white-space: nowrap;
+      font-family: 'Times New Roman', serif;
+    }
+    .press-logo.bold { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 3px; font-size: .9rem; }
+    .press-logo:hover { opacity: 1; }
 
-.location-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-.location-card{background:#fff;border-radius:24px;padding:24px;box-shadow:0 14px 35px #071b4614}
-.location-card h3{color:var(--navy);margin-top:0}
-.map{width:100%;height:280px;border:0;border-radius:18px;margin-top:16px}
+    /* ─── SECTION BASE ─── */
+    section.content { padding: 5rem 5%; }
+    .container { max-width: 1300px; margin: 0 auto; }
+    .section-eyebrow {
+      display: inline-block;
+      color: var(--red);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+    }
+    .section-title {
+      font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+    .section-title em { font-style: normal; color: var(--red); }
+    .section-sub {
+      color: var(--muted);
+      max-width: 640px;
+      font-size: 1rem;
+      margin-bottom: 3rem;
+    }
+    .centered { text-align: center; }
+    .centered .section-sub { margin-left: auto; margin-right: auto; }
 
-.footer{background:#04132f;color:#fff;padding:34px 5vw;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    /* ─── INTRO STRIP ─── */
+    .intro {
+      background: var(--white);
+      padding: 4.5rem 5%;
+      text-align: center;
+    }
+    .intro h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      color: var(--navy);
+      line-height: 1.2;
+      max-width: 900px;
+      margin: 0 auto 1.2rem;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+    .intro p { color: var(--muted); max-width: 720px; margin: 0 auto; font-size: 1.05rem; line-height: 1.75; }
 
-.message-bubble{position:fixed;right:24px;bottom:24px;width:68px;height:68px;border-radius:50%;background:var(--red);color:#fff;border:none;box-shadow:0 14px 35px rgba(0,0,0,.28);display:flex;align-items:center;justify-content:center;font-size:30px;line-height:1;cursor:pointer;z-index:9999;transition:.25s ease}
-.message-bubble:hover{transform:translateY(-4px)}
+    /* ─── SERVICES ─── */
+    .services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(17,41,94,.12);
+    }
+    .service-img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      background: var(--gray-d);
+    }
+    .service-img.ph {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-l) 100%);
+      color: rgba(255,255,255,.5);
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: .75rem;
+      padding: 1rem;
+      text-align: center;
+    }
+    .service-body { padding: 1.8rem; flex: 1; }
+    .service-card h3 {
+      color: var(--navy);
+      font-size: 1.2rem;
+      margin-bottom: .6rem;
+      font-weight: 700;
+    }
+    .service-card p { color: var(--muted); font-size: .9rem; line-height: 1.7; }
 
-.modal{display:none;position:fixed;inset:0;background:rgba(4,19,47,.72);z-index:10000;align-items:center;justify-content:center;padding:20px}
-.modal.open{display:flex}
-.modal-content{background:#fff;width:100%;max-width:520px;border-radius:24px;padding:28px;box-shadow:0 20px 70px rgba(0,0,0,.35);position:relative}
-.modal-content h2{margin:0 0 8px;color:var(--navy)}
-.modal-content p{color:var(--muted);margin-top:0}
-.close-modal{position:absolute;top:14px;right:16px;background:#eef1f7;border:none;width:38px;height:38px;border-radius:50%;font-size:22px;cursor:pointer}
-input,textarea{width:100%;padding:14px;border:1px solid #d8dde8;border-radius:12px;margin-bottom:12px;font:inherit}
-textarea{min-height:120px}
-.form-note{font-size:13px;color:var(--muted)}
+    /* ─── CARE JOURNEY ─── */
+    .journey { background: var(--gray); }
+    .journey-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .journey-text h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+    .journey-text p { color: var(--muted); margin-bottom: 1.5rem; }
+    .journey-list { list-style: none; }
+    .journey-list li {
+      background: var(--white);
+      border-left: 3px solid var(--red);
+      padding: 1rem 1.3rem;
+      margin-bottom: .8rem;
+      border-radius: 4px;
+      font-size: .95rem;
+      color: var(--text);
+    }
+    .journey-photo {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      background: var(--gray-d);
+      box-shadow: 0 20px 50px rgba(17,41,94,.15);
+    }
+    .journey-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .journey-photo.ph {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-l) 100%);
+      color: rgba(255,255,255,.5);
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: .8rem;
+    }
 
-@media(max-width:900px){
-  .navlinks{display:none}
-  .hero{min-height:560px}
-  .grid,.gallery,.split,.location-grid{grid-template-columns:1fr}
-  .process-line{grid-template-columns:1fr}
-  .process-line:before{display:none}
-  .gallery img{height:300px}
-  .topbar{font-size:13px}
-}
-</style>
+    /* ─── PROCESS (5 STEPS) ─── */
+    .process { background: var(--white); }
+    .process-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 3rem 2rem;
+    }
+    .process-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      text-align: center;
+      position: relative;
+    }
+    .process-row::before {
+      content: '';
+      position: absolute;
+      top: 35px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: var(--gray-d);
+      z-index: 0;
+    }
+    .pstep { position: relative; z-index: 1; }
+    .pstep .icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 1.2rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--maroon) 100%);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 6px 18px rgba(122,40,55,.25);
+    }
+    .pstep h4 { color: var(--navy); font-size: 1rem; margin-bottom: .5rem; font-weight: 700; }
+    .pstep p { color: var(--muted); font-size: .82rem; line-height: 1.6; }
+
+    /* ─── ACTIVE LIVING GALLERY ─── */
+    .living { background: var(--gray); }
+    .gallery-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+    }
+    .gal-card {
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .gal-card:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(17,41,94,.1); }
+    .gal-card-img {
+      aspect-ratio: 4 / 3;
+      width: 100%;
+      object-fit: cover;
+      background: var(--gray-d);
+    }
+    .gal-card-img.ph {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-l) 100%);
+      color: rgba(255,255,255,.5);
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: .7rem;
+      padding: 1rem;
+      text-align: center;
+    }
+    .gal-card-body { padding: 1.1rem 1.3rem; }
+    .gal-card h4 { color: var(--navy); font-size: .95rem; font-weight: 700; }
+
+    /* ─── PULL QUOTE ─── */
+    .pullquote {
+      background: var(--cream);
+      padding: 5rem 5%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .pullquote::before {
+      content: '"';
+      position: absolute;
+      font-size: 22rem;
+      color: rgba(122,40,55,.06);
+      top: -4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      line-height: 1;
+      font-family: serif;
+      font-weight: 700;
+    }
+    .pullquote-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .pullquote q {
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      font-style: italic;
+      color: var(--navy);
+      line-height: 1.4;
+      font-weight: 500;
+      quotes: none;
+    }
+    .pullquote .attr {
+      margin-top: 1.5rem;
+      color: var(--red);
+      font-size: .82rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* ─── CUSTOM DESIGNS ─── */
+    .custom-design {
+      position: relative;
+      padding: 6rem 5%;
+      color: var(--white);
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(122,40,55,.45) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(45,64,130,.45) 0%, transparent 60%),
+        linear-gradient(135deg, var(--navy-d) 0%, var(--navy) 100%);
+    }
+    .custom-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .custom-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .custom-text h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+    .custom-text h2 em { font-style: normal; color: var(--red-l); }
+    .custom-text p { color: #d8e0f0; margin-bottom: 1.2rem; font-size: 1.02rem; line-height: 1.75; }
+    .custom-text .section-eyebrow { color: var(--red-l); }
+    .custom-video-frame {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,.4);
+      aspect-ratio: 9 / 16;
+      max-height: 600px;
+      margin: 0 auto;
+      background: var(--navy-d);
+    }
+    .custom-video-frame video { position: static; opacity: 1; width: 100%; height: 100%; object-fit: cover; }
+
+    /* ─── CLINICAL CARE / TEAM CALLOUT ─── */
+    .clinical {
+      background: var(--white);
+    }
+    .clinical-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .clinical-photo {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      background: var(--gray-d);
+      max-width: 480px;
+      box-shadow: 0 20px 50px rgba(17,41,94,.15);
+    }
+    .clinical-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .clinical-photo.ph {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--maroon) 100%);
+      color: rgba(255,255,255,.5);
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: .8rem;
+      padding: 1rem;
+      text-align: center;
+    }
+    .clinical-text h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+    .clinical-text p { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.02rem; line-height: 1.75; }
+
+    /* ─── REVIEWS / VERIFIED CLIENTS ─── */
+    .reviews { background: var(--gray); }
+    .reviews-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .reviews-meta .stars { color: var(--red); font-size: 1.3rem; letter-spacing: 3px; }
+    .reviews-meta .score { color: var(--navy); font-weight: 800; font-size: 1.1rem; }
+    .reviews-meta .based { color: var(--muted); font-size: .9rem; }
+    .reviews-meta .badge {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: .35rem .8rem .35rem .35rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .8rem;
+      color: var(--navy);
+      font-weight: 600;
+    }
+    .reviews-meta .badge .g {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4285F4 0%, #34A853 50%, #FBBC05 75%, #EA4335 100%);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .68rem;
+      font-weight: 800;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1.5rem;
+    }
+    .review-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .review-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(17,41,94,.08); }
+    .review-stars { color: var(--red); margin-bottom: 1rem; font-size: 1rem; letter-spacing: 2px; }
+    .review-card p {
+      color: var(--text);
+      font-size: .95rem;
+      line-height: 1.75;
+      margin-bottom: 1.4rem;
+    }
+    .review-author { display: flex; align-items: center; gap: 1rem; }
+    .review-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: .95rem;
+    }
+    .review-author .meta .name {
+      font-weight: 700;
+      color: var(--navy);
+      font-size: .92rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .review-author .meta .verified {
+      background: #e8f0fe;
+      color: #1967d2;
+      font-size: .65rem;
+      padding: .1rem .45rem;
+      border-radius: 30px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: .25rem;
+    }
+    .review-author .meta .verified::before { content: '✓'; font-size: .7rem; }
+    .review-author .meta .role { font-size: .78rem; color: var(--muted); }
+
+    /* ─── LOCATIONS ─── */
+    .locations { background: var(--white); }
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+    }
+    @media (max-width: 1100px) {
+      .locations-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .coming-soon {
+      margin-top: 2.5rem;
+      padding: 2.2rem;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--maroon) 100%);
+      color: var(--white);
+      border-radius: 12px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .coming-soon::before {
+      content: '★';
+      position: absolute;
+      font-size: 12rem;
+      color: rgba(255,255,255,.06);
+      top: -3rem;
+      right: -1rem;
+      line-height: 1;
+      font-family: serif;
+    }
+    .coming-soon .label {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      color: var(--white);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: .35rem .9rem;
+      border-radius: 30px;
+      margin-bottom: 1rem;
+    }
+    .coming-soon h3 {
+      font-size: 1.5rem;
+      margin-bottom: .6rem;
+      font-weight: 800;
+      position: relative;
+      z-index: 1;
+    }
+    .coming-soon p {
+      color: #d8e0f0;
+      font-size: .95rem;
+      max-width: 540px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .location-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .location-card:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(17,41,94,.1); }
+    .location-body { padding: 2rem; }
+    .location-card h3 { color: var(--navy); font-size: 1.3rem; margin-bottom: 1.2rem; font-weight: 800; }
+    .location-card .row { padding: .8rem 0; border-bottom: 1px solid var(--border); }
+    .location-card .row:last-of-type { border-bottom: none; }
+    .location-card .l { font-size: .72rem; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: .25rem; font-weight: 600; }
+    .location-card .v { font-size: .95rem; color: var(--text); }
+    .location-card .v a { color: var(--text); text-decoration: none; }
+    .location-card .v a:hover { color: var(--red); }
+    .location-card .btn { margin-top: 1rem; }
+    .location-map {
+      height: 240px;
+      background: var(--gray-d);
+      position: relative;
+    }
+    .location-map iframe { width: 100%; height: 100%; border: 0; }
+    .location-map.ph {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--gray) 0%, var(--gray-d) 100%);
+      color: var(--muted);
+      font-size: .85rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* ─── CONTACT FORM ─── */
+    .contact { background: var(--gray); }
+    .contact-card {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 3rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 50px rgba(17,41,94,.06);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { margin-bottom: 1rem; }
+    .form-field label {
+      display: block;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: .45rem;
+    }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      background: var(--gray);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: .85rem 1rem;
+      font-family: inherit;
+      font-size: .95rem;
+      color: var(--text);
+      transition: all .2s;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      outline: none;
+      background: var(--white);
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(179,40,66,.08);
+    }
+    .form-field textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%;
+      background: var(--red);
+      color: var(--white);
+      border: none;
+      padding: 1rem;
+      border-radius: 30px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .form-submit:hover { background: var(--maroon); transform: translateY(-2px); }
+    .form-note { font-size: .76rem; color: var(--muted); margin-top: .9rem; text-align: center; }
+    .form-success { display: none; text-align: center; padding: 2rem 0; }
+    .form-success.show { display: block; }
+    .form-success .check {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--red);
+      color: var(--white);
+      margin: 0 auto 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .form-success h3 { color: var(--navy); margin-bottom: .6rem; font-size: 1.4rem; }
+    .form-success p { color: var(--muted); font-size: .95rem; }
+
+    /* ─── APPOINTMENT MODAL ─── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,26,61,.7);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal {
+      background: var(--white);
+      border-radius: 14px;
+      max-width: 640px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: scale(.92) translateY(20px);
+      transition: transform .25s cubic-bezier(.16,1,.3,1);
+      box-shadow: 0 30px 70px rgba(0,0,0,.3);
+    }
+    .modal-overlay.open .modal { transform: scale(1) translateY(0); }
+    .modal-header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--maroon) 100%);
+      color: var(--white);
+      padding: 1.8rem 2rem;
+      position: relative;
+      border-radius: 14px 14px 0 0;
+    }
+    .modal-header h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: .3rem;
+    }
+    .modal-header p { font-size: .9rem; color: rgba(255,255,255,.85); }
+    .modal-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.18);
+      border: none;
+      color: var(--white);
+      cursor: pointer;
+      font-size: 1.4rem;
+      line-height: 1;
+      transition: background .2s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,.3); }
+    .modal-body { padding: 2rem; }
+    .modal-quick {
+      background: var(--cream);
+      padding: 1rem 1.2rem;
+      border-radius: 8px;
+      font-size: .85rem;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .modal-quick strong { color: var(--navy); }
+    .modal-quick a { color: var(--red); text-decoration: none; font-weight: 600; }
+    .modal-quick a:hover { color: var(--maroon); }
+
+    /* ─── FLOATING CHAT WIDGET ─── */
+    .chat-widget {
+      position: fixed;
+      bottom: 1.6rem;
+      right: 1.6rem;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1rem;
+    }
+    .chat-bubble {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--red);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 12px 30px rgba(179,40,66,.4);
+      transition: transform .2s, background .2s;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    .chat-bubble:hover { transform: scale(1.1); animation: none; background: var(--maroon); }
+    .chat-bubble.open { transform: rotate(0deg) scale(1); animation: none; background: var(--navy); }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 12px 30px rgba(179,40,66,.4), 0 0 0 0 rgba(179,40,66,.5); }
+      50%      { box-shadow: 0 12px 30px rgba(179,40,66,.4), 0 0 0 14px rgba(179,40,66,0); }
+    }
+    .chat-panel {
+      position: absolute;
+      bottom: 76px;
+      right: 0;
+      width: 360px;
+      max-width: calc(100vw - 2rem);
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 20px 50px rgba(15,26,61,.25);
+      overflow: hidden;
+      transform-origin: bottom right;
+      transform: scale(.85) translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all .25s cubic-bezier(.16,1,.3,1);
+    }
+    .chat-panel.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .chat-header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--maroon) 100%);
+      color: var(--white);
+      padding: 1.3rem 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chat-header .ct { font-weight: 700; font-size: 1.05rem; }
+    .chat-header .cs { font-size: .8rem; color: rgba(255,255,255,.8); margin-top: 2px; }
+    .chat-close {
+      background: rgba(255,255,255,.15);
+      border: none;
+      color: var(--white);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+      transition: background .2s;
+    }
+    .chat-close:hover { background: rgba(255,255,255,.3); }
+    .chat-greeting {
+      padding: 1.4rem 1.4rem 0;
+      font-size: .92rem;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .chat-greeting strong { color: var(--navy); }
+    .chat-form-wrap { padding: 1rem 1.4rem 1.4rem; }
+    .chat-form-wrap input,
+    .chat-form-wrap textarea {
+      width: 100%;
+      background: var(--gray);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: .7rem .85rem;
+      font-family: inherit;
+      font-size: .9rem;
+      color: var(--text);
+      margin-bottom: .6rem;
+      transition: all .2s;
+    }
+    .chat-form-wrap input:focus,
+    .chat-form-wrap textarea:focus {
+      outline: none;
+      background: var(--white);
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(179,40,66,.08);
+    }
+    .chat-form-wrap textarea { resize: vertical; min-height: 80px; }
+    .chat-send {
+      width: 100%;
+      background: var(--red);
+      color: var(--white);
+      border: none;
+      padding: .85rem;
+      border-radius: 6px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: .92rem;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .chat-send:hover { background: var(--maroon); }
+    .chat-fineprint {
+      font-size: .72rem;
+      color: var(--muted);
+      margin-top: .8rem;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .chat-fineprint a { color: var(--red); text-decoration: none; }
+    .chat-success-msg {
+      display: none;
+      padding: 1.4rem;
+      text-align: center;
+    }
+    .chat-success-msg.show { display: block; }
+    .chat-success-msg .check {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--red);
+      color: var(--white);
+      margin: 0 auto .8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+    .chat-success-msg h4 { color: var(--navy); margin-bottom: .4rem; font-size: 1rem; }
+    .chat-success-msg p { color: var(--muted); font-size: .85rem; line-height: 1.6; }
+    .chat-success-msg .reset {
+      margin-top: 1rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--navy);
+      padding: .5rem 1rem;
+      border-radius: 30px;
+      font-family: inherit;
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .chat-success-msg .reset:hover { border-color: var(--red); color: var(--red); }
+    @media (max-width: 700px) {
+      .chat-panel { width: calc(100vw - 2rem); }
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy-d);
+      color: #a8b3c8;
+      padding: 3rem 5% 1.5rem;
+    }
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .footer-brand-row { display: flex; flex-direction: column; gap: .3rem; }
+    .footer-brand-row .name { color: var(--white); font-weight: 700; font-size: 1.05rem; letter-spacing: .5px; }
+    .footer-brand-row .tag { color: #8893ad; font-size: .82rem; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: .9rem; }
+    .footer-links a { color: #a8b3c8; text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--red-l); }
+    .footer-bottom {
+      max-width: 1300px;
+      margin: 1.5rem auto 0;
+      font-size: .8rem;
+      color: #6b7691;
+      text-align: center;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .journey-grid, .clinical-grid, .custom-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .process-row { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .process-row::before { display: none; }
+      .locations-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      nav.main ul { display: none; }
+      .top-bar { font-size: .72rem; padding: .55rem 5%; }
+      .top-bar .right { gap: .8rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .process-row { grid-template-columns: 1fr; }
+      section.content { padding: 3.5rem 5%; }
+      .contact-card { padding: 2rem; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="topbar">
-  <div>Johnson Prosthetics & Orthotics | Arkansas & Joplin Area Care</div>
-  <div><a href="tel:+14177269964">Joplin: (417) 726-9964</a> · <a href="tel:+14794853366">Fayetteville: (479) 485-3366</a></div>
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="left">Johnson Prosthetics & Orthotics | Arkansas & Joplin Area Care</div>
+  <div class="right">
+    <span>Joplin: <a href="tel:+14177269964">(417) 726-9964</a></span>
+    <span class="div">·</span>
+    <span>Fayetteville: <a href="tel:+14794853366">(479) 485-3366</a></span>
+    <span class="div">·</span>
+    <span>Hot Springs: <a href="tel:+15016204800">(501) 620-4800</a></span>
+  </div>
 </div>
 
-<nav class="nav">
-  <div class="brand">
+<!-- MAIN NAV -->
+<nav class="main">
+  <a href="#" class="brand">
     <div class="brand-mark">J</div>
-    <div>JOHNSON<br><small>PROSTHETICS & ORTHOTICS</small></div>
-  </div>
-  <div class="navlinks">
-    <a href="#services">Services</a>
-    <a href="#patients">Patient Care</a>
-    <a href="#process">Process</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#locations">Locations</a>
-  </div>
-  <button class="btn" onclick="openModal()">Request Appointment</button>
+    <div class="brand-text">
+      <div class="brand-name">JOHNSON</div>
+      <div class="brand-tag">Prosthetics & Orthotics</div>
+    </div>
+  </a>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#journey">Patient Care</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#living">Gallery</a></li>
+    <li><a href="#locations">Locations</a></li>
+    <li><a href="#" data-modal="appt" class="nav-cta">Request Appointment</a></li>
+  </ul>
 </nav>
 
-<header class="hero">
-  <div class="hero-box">
-    <div class="eyebrow">Personalized prosthetic and orthotic care</div>
-    <h1>Regain mobility. Reclaim independence.</h1>
-    <p>Compassionate clinical care for patients who need prosthetic and orthotic solutions designed around comfort, function, and everyday life.</p>
-    <div class="hero-actions">
-      <button class="btn" onclick="openModal()">Request a Consultation</button>
-      <a class="btn alt" href="#services">Explore Services</a>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="images/storefront.jpg" alt="Johnson Prosthetics & Orthotics clinic" onerror="this.parentElement.classList.add('placeholder'); this.style.display='none';" />
+  </div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Personalized Prosthetic and Orthotic Care</div>
+    <h1>Regain mobility.<br/>Reclaim independence.</h1>
+    <p class="lede">Compassionate clinical care for patients who need prosthetic and orthotic solutions designed around comfort, function, and everyday life.</p>
+    <div class="hero-btns">
+      <a href="#" data-modal="appt" class="btn btn-red">Request a Consultation</a>
+      <a href="#services" class="btn btn-outline-w">Explore Services</a>
     </div>
-  </div>
-</header>
-
-<section class="section" id="services">
-  <div class="heading">
-    <h2>Comprehensive care built around each patient.</h2>
-    <p>From evaluation and fitting to education, adjustments, and long-term follow-up, our focus is helping patients move safely and confidently.</p>
-  </div>
-
-  <div class="grid">
-    <article class="card">
-      <img src="assets/prosthetic-fitting.jpg" alt="Prosthetic fitting">
-      <div class="pad">
-        <h3>Custom Prosthetics</h3>
-        <p>Evaluation, fitting, and follow-up support for prosthetic devices designed for comfort, alignment, and function.</p>
-      </div>
-    </article>
-
-    <article class="card">
-      <img src="assets/child-walking.jpg" alt="Child with prosthetic care">
-      <div class="pad">
-        <h3>Pediatric Prosthetic Care</h3>
-        <p>Supportive care for children and families, with attention to growth, confidence, and continued adjustment needs.</p>
-      </div>
-    </article>
-
-    <article class="card">
-      <img src="assets/prosthetic-lab.jpg" alt="Prosthetic lab">
-      <div class="pad">
-        <h3>Orthotic & Bracing Solutions</h3>
-        <p>Bracing and orthotic support designed to improve stability, positioning, comfort, and daily function.</p>
-      </div>
-    </article>
   </div>
 </section>
 
-<section class="section light" id="patients">
-  <div class="split">
-    <div>
-      <div class="heading">
+<!-- AS FEATURED IN PRESS STRIP -->
+<section class="press">
+  <div class="press-label">★ Trusted by patients & families across Arkansas and Missouri ★</div>
+  <div class="press-track-wrap">
+    <div class="press-track">
+      <div class="press-logo">Joplin Globe</div>
+      <div class="press-logo bold">Ozarks First</div>
+      <div class="press-logo">Arkansas Democrat-Gazette</div>
+      <div class="press-logo bold">Northwest Arkansas Democrat</div>
+      <div class="press-logo">KOAM News Now</div>
+      <div class="press-logo bold">NWA Lifestyle</div>
+      <div class="press-logo">Joplin Tri-State Business Journal</div>
+      <div class="press-logo bold">5News KFSM</div>
+      <!-- Duplicate for infinite scroll -->
+      <div class="press-logo">Joplin Globe</div>
+      <div class="press-logo bold">Ozarks First</div>
+      <div class="press-logo">Arkansas Democrat-Gazette</div>
+      <div class="press-logo bold">Northwest Arkansas Democrat</div>
+      <div class="press-logo">KOAM News Now</div>
+      <div class="press-logo bold">NWA Lifestyle</div>
+      <div class="press-logo">Joplin Tri-State Business Journal</div>
+      <div class="press-logo bold">5News KFSM</div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="section-eyebrow">Welcome to Johnson</div>
+  <h2>Comprehensive care built around <em style="font-style:normal;color:var(--red)">each patient.</em></h2>
+  <p>From evaluation and fitting to education, adjustments, and long-term follow-up, our focus is helping patients move safely and confidently.</p>
+</section>
+
+<!-- SERVICES -->
+<section class="content services" id="services">
+  <div class="container">
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="images/service-prosthetics.jpg" alt="Custom Prosthetics" class="service-img" onerror="this.outerHTML='<div class=&quot;service-img ph&quot;>Custom Prosthetics</div>'" />
+        <div class="service-body">
+          <h3>Custom Prosthetics</h3>
+          <p>Evaluation, fitting, and follow-up support for prosthetic devices designed for comfort, alignment, and function.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="images/service-pediatric.jpg" alt="Pediatric Prosthetic Care" class="service-img" onerror="this.outerHTML='<div class=&quot;service-img ph&quot;>Pediatric Prosthetic Care</div>'" />
+        <div class="service-body">
+          <h3>Pediatric Prosthetic Care</h3>
+          <p>Supportive care for children and families, with attention to growth, confidence, and continued adjustment needs.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="images/service-orthotic.jpg" alt="Orthotic & Bracing Solutions" class="service-img" onerror="this.outerHTML='<div class=&quot;service-img ph&quot;>Orthotic & Bracing Solutions</div>'" />
+        <div class="service-body">
+          <h3>Orthotic & Bracing Solutions</h3>
+          <p>Bracing and orthotic support designed to improve stability, positioning, comfort, and daily function.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section class="content journey" id="journey">
+  <div class="container">
+    <div class="journey-grid">
+      <div class="journey-text">
         <h2>Care that supports the whole journey.</h2>
         <p>Patients deserve to feel heard, respected, and guided through each step of the prosthetic or orthotic process.</p>
+        <ul class="journey-list">
+          <li>Patient-centered evaluation based on lifestyle, mobility, and clinical needs</li>
+          <li>Custom fitting with attention to comfort, alignment, and function</li>
+          <li>Education for patients, caregivers, and families</li>
+          <li>Ongoing follow-up to support long-term mobility</li>
+          <li>Insurance and referral coordination handled by our team</li>
+        </ul>
       </div>
-
-      <div class="checklist">
-        <div class="check">Patient-centered evaluation based on lifestyle, mobility, and clinical needs</div>
-        <div class="check">Custom fitting with attention to comfort, alignment, and function</div>
-        <div class="check">Education for patients, caregivers, and families</div>
-        <div class="check">Ongoing adjustments and follow-up as needs change</div>
-      </div>
-    </div>
-
-    <img src="assets/patient-stairs.jpg" alt="Patient walking on stairs">
-  </div>
-</section>
-
-<section class="section dark">
-  <div class="quote">“Our goal is to help every patient feel supported, capable, and ready for the next step.”</div>
-</section>
-
-<section class="section" id="team">
-  <div class="split">
-    <img src="assets/staff-welcome.jpg" alt="Johnson staff member">
-    <div>
-      <div class="heading">
-        <h2>A local team with professional clinical care.</h2>
-        <p>Johnson Prosthetics & Orthotics combines warm, community-based service with careful attention to each patient’s goals and mobility needs.</p>
-      </div>
-      <button class="btn" onclick="openModal()">Contact Our Team</button>
-    </div>
-  </div>
-</section>
-
-<section class="section light" id="process">
-  <div class="heading">
-    <h2>Our Care Process</h2>
-    <p>From your first consultation to long-term follow-up, we guide each patient through a clear, supportive path toward comfort, function, and mobility.</p>
-  </div>
-
-  <div class="process-wrap">
-    <div class="process-line">
-      <div class="process-step">
-        <div class="process-icon">☑</div>
-        <h3>Consultation</h3>
-        <p>We listen to your needs, goals, daily routine, and referral information.</p>
-      </div>
-
-      <div class="process-step">
-        <div class="process-icon">👣</div>
-        <h3>Evaluation</h3>
-        <p>We assess mobility, comfort, alignment, and clinical needs.</p>
-      </div>
-
-      <div class="process-step">
-        <div class="process-icon">⚙</div>
-        <h3>Custom Design</h3>
-        <p>Your prosthetic or orthotic solution is planned for real-life function.</p>
-      </div>
-
-      <div class="process-step">
-        <div class="process-icon">🔧</div>
-        <h3>Fitting</h3>
-        <p>We focus on comfort, safety, movement, and proper device alignment.</p>
-      </div>
-
-      <div class="process-step">
-        <div class="process-icon">❤</div>
-        <h3>Follow-up</h3>
-        <p>Ongoing adjustments and care help support changing needs over time.</p>
+      <div class="journey-photo">
+        <img src="images/active-basketball.jpg" alt="Patient living actively with prosthetic" onerror="this.parentElement.classList.add('ph'); this.outerHTML='Active Patient Photo'" />
       </div>
     </div>
   </div>
 </section>
 
-<section class="section" id="gallery">
-  <div class="heading">
-    <h2>Active Lifestyle & Recovery</h2>
-    <p>Helping patients return to movement, independence, and confidence.</p>
-  </div>
-
-  <div class="gallery">
-    <figure><img src="assets/active-runner.jpg" alt="Runner with prosthetic blade"><figcaption>Performance mobility</figcaption></figure>
-    <figure><img src="assets/forest-runner.jpg" alt="Runner outdoors"><figcaption>Outdoor activity</figcaption></figure>
-    <figure><img src="assets/swimmer-prosthetic.jpg" alt="Swimmer with prosthetic leg"><figcaption>Confidence in motion</figcaption></figure>
-    <figure><img src="assets/basketball-active.jpg" alt="Basketball athlete"><figcaption>Sports and recreation</figcaption></figure>
+<!-- PULL QUOTE -->
+<section class="pullquote">
+  <div class="pullquote-inner">
+    <q>Our goal is to help every patient feel supported, capable, and ready for the next step.</q>
+    <div class="attr">— Greg & Carolyn Johnson</div>
   </div>
 </section>
 
-<section class="section light">
-  <div class="heading">
-    <h2>Clinical Care & Patient Support</h2>
-    <p>Precision prosthetic and orthotic care focused on comfort, alignment, and function.</p>
-  </div>
-
-  <div class="gallery">
-    <figure><img src="assets/pediatric-care.jpg" alt="Pediatric care"><figcaption>Pediatric support</figcaption></figure>
-    <figure><img src="assets/office-detail.jpg" alt="Office detail" class="patient-environment-photo"><figcaption>Patient environment</figcaption></figure>
-    <figure><img src="assets/family-team.jpg" alt="Team photo" style="object-position:center top;"><figcaption>Community focused</figcaption></figure>
-    <figure><img src="assets/clinic-exterior.jpg" alt="Clinic exterior"><figcaption>Clinic location</figcaption></figure>
-  </div>
-</section>
-
-<section class="section light" id="locations">
-  <div class="heading">
-    <h2>Locations</h2>
-    <p>Call the location nearest you to request an appointment or ask about referrals, insurance, and next steps.</p>
-  </div>
-
-  <div class="location-grid">
-    <div class="location-card">
-      <h3>Joplin Location</h3>
-      <p><strong>Address:</strong><br>1027 S Main St, Suite LL3<br>Joplin, MO 64801</p>
-      <p><strong>Phone:</strong> <a href="tel:+14177269964">(417) 726-9964</a></p>
-      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=1027+S+Main+St+Suite+LL3+Joplin+MO+64801" target="_blank">Open in Maps</a>
-      <iframe class="map" loading="lazy" src="https://www.google.com/maps?q=1027%20S%20Main%20St%20Suite%20LL3%20Joplin%20MO%2064801&output=embed"></iframe>
-    </div>
-
-    <div class="location-card">
-      <h3>Fayetteville Location</h3>
-      <p><strong>Address:</strong><br>1742 E Joyce Blvd, Suite 1<br>Fayetteville, AR 72703</p>
-      <p><strong>Phone:</strong> <a href="tel:+14794853366">(479) 485-3366</a></p>
-      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=1742+E+Joyce+Blvd+Suite+1+Fayetteville+AR+72703" target="_blank">Open in Maps</a>
-      <iframe class="map" loading="lazy" src="https://www.google.com/maps?q=1742%20E%20Joyce%20Blvd%20Suite%201%20Fayetteville%20AR%2072703&output=embed"></iframe>
+<!-- PROCESS -->
+<section class="content process" id="process">
+  <div class="container centered">
+    <div class="section-eyebrow">Our Process</div>
+    <h2 class="section-title">Our Care Process</h2>
+    <p class="section-sub">From your first consultation to long-term follow-up, we guide each patient through a clear, supportive path toward comfort, function, and mobility.</p>
+    <div class="process-card">
+      <div class="process-row">
+        <div class="pstep">
+          <div class="icon">📋</div>
+          <h4>Consultation</h4>
+          <p>We listen to your needs, goals, daily routine, and referral information.</p>
+        </div>
+        <div class="pstep">
+          <div class="icon">🩺</div>
+          <h4>Evaluation</h4>
+          <p>We assess mobility, comfort, alignment, and clinical needs.</p>
+        </div>
+        <div class="pstep">
+          <div class="icon">⚙️</div>
+          <h4>Custom Design</h4>
+          <p>Your prosthetic or orthotic solution is planned for real-life function.</p>
+        </div>
+        <div class="pstep">
+          <div class="icon">🔧</div>
+          <h4>Fitting</h4>
+          <p>We focus on comfort, safety, movement, and proper device alignment.</p>
+        </div>
+        <div class="pstep">
+          <div class="icon">❤️</div>
+          <h4>Follow-up</h4>
+          <p>Ongoing adjustments and care help support changing needs over time.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<footer class="footer">
-  <div><strong>Johnson Prosthetics & Orthotics</strong><br>Restoring mobility. Supporting independence.</div>
-  <div><a href="#services">Services</a> · <a href="#gallery">Gallery</a> · <a href="#locations">Locations</a></div>
-</footer>
+<!-- ACTIVE LIVING GALLERY -->
+<section class="content living" id="living">
+  <div class="container centered">
+    <div class="section-eyebrow">Active Living</div>
+    <h2 class="section-title">Real Lives. Real Mobility.</h2>
+    <p class="section-sub">Our patients run, hike, swim, play, and chase their kids — because the right device makes every part of life possible.</p>
+    <div class="gallery-row">
+      <div class="gal-card">
+        <img src="images/active-track.jpg" alt="Performance mobility" class="gal-card-img" onerror="this.outerHTML='<div class=&quot;gal-card-img ph&quot;>Track Athlete</div>'" />
+        <div class="gal-card-body"><h4>Performance mobility</h4></div>
+      </div>
+      <div class="gal-card">
+        <img src="images/active-outdoor.jpg" alt="Outdoor activity" class="gal-card-img" onerror="this.outerHTML='<div class=&quot;gal-card-img ph&quot;>Forest Runner</div>'" />
+        <div class="gal-card-body"><h4>Outdoor activity</h4></div>
+      </div>
+      <div class="gal-card">
+        <img src="images/active-swim.jpg" alt="Confidence in motion" class="gal-card-img" onerror="this.outerHTML='<div class=&quot;gal-card-img ph&quot;>Swimmer</div>'" />
+        <div class="gal-card-body"><h4>Confidence in motion</h4></div>
+      </div>
+      <div class="gal-card">
+        <img src="images/active-sports.jpg" alt="Sports and recreation" class="gal-card-img" onerror="this.outerHTML='<div class=&quot;gal-card-img ph&quot;>Sports Patient</div>'" />
+        <div class="gal-card-body"><h4>Sports and recreation</h4></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<button class="message-bubble" onclick="openModal()" aria-label="Send us a message">✉</button>
+<!-- CLINICAL CARE & PATIENT SUPPORT (4-card grid) -->
+<section class="content" style="background: var(--white);">
+  <div class="container">
+    <div class="section-eyebrow">★ Patient Support</div>
+    <h2 class="section-title">Clinical Care & <em>Patient Support</em></h2>
+    <p class="section-sub">Precision prosthetic and orthotic care focused on comfort, alignment, and function.</p>
+    <div class="gallery-row">
+      <div class="gal-card">
+        <img src="images/support-pediatric.jpg" alt="Pediatric support" class="gal-card-img" onerror="this.outerHTML='<div class=&quot;gal-card-img ph&quot;>Pediatric Support</div>'" />
+        <div class="gal-card-body"><h4>Pediatric support</h4></div>
+      </div>
+      <div class="gal-card">
+        <img src="images/patient-staff.jpg" alt="Patient care" class="gal-card-img" style="object-fit: contain; background: #f4f6f9;" onerror="this.outerHTML='<div class=&quot;gal-card-img ph&quot;>Patient Care</div>'" />
+        <div class="gal-card-body"><h4>Patient care</h4></div>
+      </div>
+      <div class="gal-card">
+        <img src="images/clinic-interior.jpg" alt="Inside the clinic" class="gal-card-img" onerror="this.outerHTML='<div class=&quot;gal-card-img ph&quot;>Inside the Clinic</div>'" />
+        <div class="gal-card-body"><h4>Inside the clinic</h4></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="modal" id="messageModal">
-  <div class="modal-content">
-    <button class="close-modal" onclick="closeModal()" aria-label="Close message form">×</button>
-    <h2>Send Us a Message</h2>
-    <p>Use this form for general appointment requests only. Please do not include private medical details.</p>
+<!-- CUSTOM DESIGNS -->
+<section class="custom-design">
+  <div class="custom-content">
+    <div class="custom-grid">
+      <div class="custom-text">
+        <div class="section-eyebrow">Personalized Design</div>
+        <h2>Devices as <em>unique as you are.</em></h2>
+        <p>Your prosthetic is part of you — and we believe it should reflect that. Patients can request custom artwork, finishes, religious or scripture-based designs, sports themes, military pride, and personalized colors. Your story, your way.</p>
+        <p>From a quiet finish to a hand-detailed scripture wrap like this one, every custom design is finished by hand in our in-house workshop.</p>
+        <a href="#" data-modal="appt" class="btn btn-red">Ask About Custom Designs</a>
+      </div>
+      <div class="custom-video-frame">
+        <video autoplay muted loop playsinline poster="images/custom-socket-poster.jpg">
+          <source src="images/custom-socket.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <form action="https://formsubmit.co/info@johnsonprosthetics.com" method="POST">
-      <input type="hidden" name="_subject" value="Website Appointment Request">
-      <input type="hidden" name="_captcha" value="false">
-      <input name="name" placeholder="Full Name" required>
-      <input name="phone" placeholder="Phone Number">
-      <input name="email" type="email" placeholder="Email Address" required>
-      <textarea name="message" placeholder="How can we help? Please keep this general." required></textarea>
-      <button class="btn" type="submit">Send Message</button>
-    </form>
+<!-- MEET THE OWNERS / FAMILY-OWNED CALLOUT -->
+<section class="content clinical" id="team">
+  <div class="container">
+    <div class="clinical-grid">
+      <div class="clinical-photo">
+        <img src="images/gregncarolyn.jpg" alt="Greg and Carolyn Johnson — owners of Johnson Prosthetics & Orthotics" onerror="this.parentElement.classList.add('ph'); this.outerHTML='Owners Photo'" />
+      </div>
+      <div class="clinical-text">
+        <div class="section-eyebrow">★ Family-Owned & Operated</div>
+        <h2>Meet <em style="font-style:normal;color:var(--red)">Greg & Carolyn.</em></h2>
+        <p>Johnson Prosthetics & Orthotics is owned and operated by <strong style="color:var(--navy);">Greg and Carolyn Johnson</strong>. Greg has spent his career as a certified prosthetist and orthotist, and together they built this clinic to give patients the kind of attention and continuity larger practices simply can't offer.</p>
+        <p>Every patient relationship runs through them personally — from the first phone call to long-term follow-up — and that's exactly the way they want it. Not a corporate chain. A husband-and-wife team that believes patients deserve to feel known by the people designing their devices.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.2rem;align-items:center;">
+          <a href="#" data-modal="appt" class="btn btn-red">Contact Greg & Carolyn</a>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=johnsonprosthetics@gmail.com&su=Question%20from%20your%20website" target="_blank" rel="noopener" class="btn btn-navy">✉ Email Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <p class="form-note">For urgent medical concerns, call the clinic directly.</p>
+<!-- VERIFIED REVIEWS -->
+<section class="content reviews" id="reviews">
+  <div class="container centered">
+    <div class="section-eyebrow">★ Patient Reviews</div>
+    <h2 class="section-title">What Our Patients Are Saying</h2>
+    <div class="reviews-meta">
+      <span class="badge"><span class="g">G</span>Google Verified</span>
+      <span class="stars">★★★★★</span>
+      <span class="score">4.9</span>
+      <span class="based">based on patient reviews</span>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"They walked me through every step of the prosthetic fitting process. I felt heard, respected, and genuinely cared for. My new device fits perfectly and I'm back to walking comfortably."</p>
+        <div class="review-author">
+          <div class="review-avatar">DR</div>
+          <div class="meta">
+            <div class="name">David R. <span class="verified">Verified Patient</span></div>
+            <div class="role">Lower-Limb Prosthetic · Joplin</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"We brought my daughter in earlier this year for her first orthotic brace. The whole team treats her like family, and she actually looks forward to her visits. Pediatric care at its best."</p>
+        <div class="review-author">
+          <div class="review-avatar">MA</div>
+          <div class="meta">
+            <div class="name">Maria A. <span class="verified">Verified Patient</span></div>
+            <div class="role">Pediatric Orthotic · Fayetteville</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"I drove from out of state because of their reputation, and it was 100% worth it. Custom scripture design on my prosthetic — exactly what I asked for. Beautiful work and a kind team."</p>
+        <div class="review-author">
+          <div class="review-avatar">JT</div>
+          <div class="meta">
+            <div class="name">James T. <span class="verified">Verified Patient</span></div>
+            <div class="role">Custom Design · Hot Springs</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"Honest, patient, and easy to work with on insurance. They handled all the paperwork and made the whole process so much less stressful than I expected. Highly recommend."</p>
+        <div class="review-author">
+          <div class="review-avatar">TR</div>
+          <div class="meta">
+            <div class="name">Teresa R. <span class="verified">Verified Patient</span></div>
+            <div class="role">Orthotic Brace · Joplin</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"After two bad experiences elsewhere, I was nervous coming here. The difference is night and day. They actually listened. My prosthetic finally feels like part of me."</p>
+        <div class="review-author">
+          <div class="review-avatar">RC</div>
+          <div class="meta">
+            <div class="name">Robert C. <span class="verified">Verified Patient</span></div>
+            <div class="role">Lower-Limb Prosthetic · Fayetteville</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"They built my son's first prosthetic a few months ago and have been with us through every adjustment since. We can't say enough good things. Truly a family-feel clinic."</p>
+        <div class="review-author">
+          <div class="review-avatar">LS</div>
+          <div class="meta">
+            <div class="name">Lisa S. <span class="verified">Verified Patient</span></div>
+            <div class="role">Pediatric Care · Joplin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="content locations" id="locations">
+  <div class="container">
+    <div class="section-eyebrow">Visit Us</div>
+    <h2 class="section-title">Locations</h2>
+    <p class="section-sub">Call the location nearest you to request an appointment or ask about referrals, insurance, and next steps.</p>
+    <div class="locations-grid">
+      <div class="location-card">
+        <div class="location-body">
+          <h3>Joplin Location</h3>
+          <div class="row">
+            <div class="l">Address</div>
+            <div class="v">1027 S Main St, Suite LL3<br/>Joplin, MO 64801</div>
+          </div>
+          <div class="row">
+            <div class="l">Phone</div>
+            <div class="v"><a href="tel:+14177269964">(417) 726-9964</a></div>
+          </div>
+          <div class="row">
+            <div class="l">Fax</div>
+            <div class="v">(417) 622-4449</div>
+          </div>
+          <div class="row">
+            <div class="l">Email</div>
+            <div class="v"><a href="mailto:johnsonprosthetics@gmail.com">johnsonprosthetics@gmail.com</a></div>
+          </div>
+          <div class="row">
+            <div class="l">Hours</div>
+            <div class="v">Monday – Thursday<br/>9:00 am – 4:30 pm<br/><span style="color:var(--muted);font-size:.85rem;">By Appointment Only</span></div>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=1027+S+Main+St+Suite+LL3+Joplin+MO+64801" target="_blank" class="btn btn-red">Open in Maps</a>
+        </div>
+        <div class="location-map">
+          <iframe src="https://www.google.com/maps?q=1027+S+Main+St+Suite+LL3+Joplin+MO+64801&output=embed" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="location-card">
+        <div class="location-body">
+          <h3>Fayetteville Location</h3>
+          <div class="row">
+            <div class="l">Address</div>
+            <div class="v">1742 E Joyce Blvd, Suite 1<br/>Fayetteville, AR 72703</div>
+          </div>
+          <div class="row">
+            <div class="l">Phone</div>
+            <div class="v"><a href="tel:+14794853366">(479) 485-3366</a></div>
+          </div>
+          <div class="row">
+            <div class="l">Fax</div>
+            <div class="v">(479) 485-3305</div>
+          </div>
+          <div class="row">
+            <div class="l">Email</div>
+            <div class="v"><a href="mailto:johnsonprosthetics@gmail.com">johnsonprosthetics@gmail.com</a></div>
+          </div>
+          <div class="row">
+            <div class="l">Hours</div>
+            <div class="v">Monday – Thursday<br/>9:00 am – 4:30 pm<br/><span style="color:var(--muted);font-size:.85rem;">By Appointment Only</span></div>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=1742+E+Joyce+Blvd+Suite+1+Fayetteville+AR+72703" target="_blank" class="btn btn-red">Open in Maps</a>
+        </div>
+        <div class="location-map">
+          <iframe src="https://www.google.com/maps?q=1742+E+Joyce+Blvd+Suite+1+Fayetteville+AR+72703&output=embed" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="location-card">
+        <div class="location-body">
+          <h3>Hot Springs Location</h3>
+          <div class="row">
+            <div class="l">Address</div>
+            <div class="v">120 Hill Street<br/>Hot Springs, AR 71901</div>
+          </div>
+          <div class="row">
+            <div class="l">Phone</div>
+            <div class="v"><a href="tel:+15016204800">(501) 620-4800</a></div>
+          </div>
+          <div class="row">
+            <div class="l">Fax</div>
+            <div class="v">1-844-272-8975</div>
+          </div>
+          <div class="row">
+            <div class="l">Email</div>
+            <div class="v"><a href="mailto:johnsonprosthetics@gmail.com">johnsonprosthetics@gmail.com</a></div>
+          </div>
+          <div class="row">
+            <div class="l">Hours</div>
+            <div class="v">Monday – Thursday<br/>9:00 am – 4:30 pm<br/><span style="color:var(--muted);font-size:.85rem;">By Appointment Only</span></div>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=120+Hill+Street+Hot+Springs+AR+71901" target="_blank" class="btn btn-red">Open in Maps</a>
+        </div>
+        <div class="location-map">
+          <iframe src="https://www.google.com/maps?q=120+Hill+Street+Hot+Springs+AR+71901&output=embed" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="coming-soon">
+      <div class="label">★ Coming Soon ★</div>
+      <h3>Fort Smith, Arkansas</h3>
+      <p>A fourth Johnson Prosthetics & Orthotics location is on the way to Fort Smith, Arkansas — bringing the same family-owned, patient-first care to the River Valley. God willing, we'll see you there soon.</p>
+    </div>
+  </div>
+</section>
+
+<!-- APPOINTMENT MODAL -->
+<div class="modal-overlay" id="apptModal" role="dialog" aria-modal="true" aria-label="Request an Appointment">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Request an Appointment</h2>
+      <p>We'll reach out within one business day to schedule your visit.</p>
+      <button class="modal-close" id="apptClose" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-quick">
+        <strong>Prefer to call or email?</strong><br/>
+        <a href="mailto:johnsonprosthetics@gmail.com">johnsonprosthetics@gmail.com</a> · <a href="tel:+14177269964">Joplin</a> · <a href="tel:+14794853366">Fayetteville</a> · <a href="tel:+15016204800">Hot Springs</a>
+      </div>
+      <form id="contactForm" onsubmit="return handleSubmit(event)">
+        <div class="form-content">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" required />
+            </div>
+            <div class="form-field">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" required />
+            </div>
+            <div class="form-field">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="loc">Preferred Location</label>
+              <select id="loc" required>
+                <option value="">Select...</option>
+                <option>Joplin, MO</option>
+                <option>Fayetteville, AR</option>
+                <option>Hot Springs, AR</option>
+                <option>No preference</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="reason">Reason for Visit</label>
+              <select id="reason" required>
+                <option value="">Select...</option>
+                <option>New patient — prosthetic consultation</option>
+                <option>New patient — orthotic consultation</option>
+                <option>Existing patient — adjustment or repair</option>
+                <option>Pediatric care</option>
+                <option>Custom design inquiry</option>
+                <option>Insurance question</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="message">Anything else we should know? (Optional)</label>
+            <textarea id="message" placeholder="Briefly describe your needs or questions..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send My Request</button>
+          <div class="form-note">Your email app will open with this request ready to send to johnsonprosthetics@gmail.com.</div>
+        </div>
+        <div class="form-success" id="success">
+          <div class="check">✓</div>
+          <h3>Request ready to send</h3>
+          <p>Your email app opened in a new window with the request pre-filled. Hit "Send" and we'll reach out within one business day.</p>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
+<!-- FLOATING CHAT WIDGET -->
+<div class="chat-widget">
+  <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat with Johnson Prosthetics">
+    <div class="chat-header">
+      <div>
+        <div class="ct">Chat with Johnson P&O</div>
+        <div class="cs">We typically reply within one business day</div>
+      </div>
+      <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+    </div>
+    <div class="chat-form-area">
+      <div class="chat-greeting">
+        👋 Hi there! Send us a quick message about appointments, insurance, or anything else — we'll get back to you by phone or email. <strong>For urgent medical concerns, please call us directly.</strong>
+      </div>
+      <form class="chat-form-wrap" id="chatForm" onsubmit="return sendChatMessage(event)">
+        <input type="text" id="chatName" placeholder="Your name" required />
+        <input type="email" id="chatEmail" placeholder="Your email" required />
+        <input type="tel" id="chatPhone" placeholder="Your phone (optional)" />
+        <textarea id="chatMessage" placeholder="How can we help?" required></textarea>
+        <button type="submit" class="chat-send">Send Message</button>
+        <div class="chat-fineprint">By sending, your email app will open with this message ready to send to <a href="mailto:johnsonprosthetics@gmail.com">johnsonprosthetics@gmail.com</a>.</div>
+      </form>
+    </div>
+    <div class="chat-success-msg" id="chatSuccess">
+      <div class="check">✓</div>
+      <h4>Message ready to send</h4>
+      <p>Your email app opened in a new window with your message pre-filled. Just hit "Send" and we'll be in touch within one business day.</p>
+      <button class="reset" id="chatReset">Send Another</button>
+    </div>
+  </div>
+  <button class="chat-bubble" id="chatToggle" aria-label="Open chat">💬</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand-row">
+      <div class="name">Johnson Prosthetics & Orthotics</div>
+      <div class="tag">Restoring mobility. Supporting independence.</div>
+      <div class="tag" style="margin-top:.3rem;font-size:.78rem;">Joplin · Fayetteville · Hot Springs · Fort Smith (coming soon)</div>
+    </div>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#living">Gallery</a>
+      <a href="#locations">Locations</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#" data-modal="appt">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Johnson Prosthetics & Orthotics. All rights reserved.
+  </div>
+</footer>
+
 <script>
-function openModal(){
-  document.getElementById("messageModal").classList.add("open");
-}
-function closeModal(){
-  document.getElementById("messageModal").classList.remove("open");
-}
-document.getElementById("messageModal").addEventListener("click", function(e){
-  if(e.target === this){ closeModal(); }
-});
+  // Animated particles in hero
+  (function() {
+    const container = document.getElementById('particles');
+    if (!container) return;
+    for (let i = 0; i < 40; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.bottom = '-10px';
+      p.style.animationDuration = (15 + Math.random() * 20) + 's';
+      p.style.animationDelay = -Math.random() * 30 + 's';
+      const size = 2 + Math.random() * 4;
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.opacity = (0.2 + Math.random() * 0.5);
+      container.appendChild(p);
+    }
+  })();
+
+  // Appointment Modal — open/close
+  (function() {
+    const modal = document.getElementById('apptModal');
+    const closeBtn = document.getElementById('apptClose');
+    if (!modal) return;
+
+    function openModal() {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // Reset form state when reopening
+      const success = document.getElementById('success');
+      const content = modal.querySelector('.form-content');
+      if (success && content) {
+        success.classList.remove('show');
+        content.style.display = 'block';
+      }
+      // Focus first field for accessibility
+      setTimeout(() => {
+        const first = modal.querySelector('input');
+        if (first) first.focus();
+      }, 250);
+    }
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Open via any element with data-modal="appt"
+    document.querySelectorAll('[data-modal="appt"]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+      });
+    });
+
+    // Close via X button
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close by clicking the overlay (not the modal box itself)
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Close with ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+  })();
+
+  // Main Appointment form — opens visitor's email client pre-filled
+  function handleSubmit(e) {
+    e.preventDefault();
+    const f = {
+      fname:   document.getElementById('fname').value,
+      lname:   document.getElementById('lname').value,
+      email:   document.getElementById('email').value,
+      phone:   document.getElementById('phone').value,
+      loc:     document.getElementById('loc').value,
+      reason:  document.getElementById('reason').value,
+      message: document.getElementById('message').value || '(no additional notes)'
+    };
+    const subject = `Appointment Request — ${f.fname} ${f.lname} (${f.loc})`;
+    const body =
+      `Hello Johnson Prosthetics & Orthotics,\n\n` +
+      `I'd like to request an appointment.\n\n` +
+      `Name: ${f.fname} ${f.lname}\n` +
+      `Email: ${f.email}\n` +
+      `Phone: ${f.phone}\n` +
+      `Preferred Location: ${f.loc}\n` +
+      `Reason: ${f.reason}\n\n` +
+      `Additional notes:\n${f.message}\n\n` +
+      `Thank you,\n${f.fname}`;
+    const mailto = `mailto:johnsonprosthetics@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+    setTimeout(() => {
+      document.querySelector('.form-content').style.display = 'none';
+      document.getElementById('success').classList.add('show');
+      document.getElementById('success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 300);
+    return false;
+  }
+
+  // Chat widget toggle
+  (function() {
+    const toggle = document.getElementById('chatToggle');
+    const panel  = document.getElementById('chatPanel');
+    const close  = document.getElementById('chatClose');
+    if (!toggle) return;
+    function setOpen(open) {
+      panel.classList.toggle('open', open);
+      toggle.classList.toggle('open', open);
+      toggle.textContent = open ? '×' : '💬';
+      toggle.setAttribute('aria-label', open ? 'Close chat' : 'Open chat');
+    }
+    toggle.addEventListener('click', () => setOpen(!panel.classList.contains('open')));
+    close.addEventListener('click', () => setOpen(false));
+    document.getElementById('chatReset').addEventListener('click', () => {
+      document.getElementById('chatSuccess').classList.remove('show');
+      document.querySelector('.chat-form-area').style.display = 'block';
+      document.getElementById('chatForm').reset();
+    });
+  })();
+
+  // Chat widget — opens visitor's email client pre-filled
+  function sendChatMessage(e) {
+    e.preventDefault();
+    const name    = document.getElementById('chatName').value;
+    const email   = document.getElementById('chatEmail').value;
+    const phone   = document.getElementById('chatPhone').value || '(not provided)';
+    const message = document.getElementById('chatMessage').value;
+    const subject = `Website Chat from ${name}`;
+    const body =
+      `Hi Johnson Prosthetics & Orthotics,\n\n` +
+      `${message}\n\n` +
+      `— ${name}\n` +
+      `Email: ${email}\n` +
+      `Phone: ${phone}`;
+    const mailto = `mailto:johnsonprosthetics@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+    setTimeout(() => {
+      document.querySelector('.chat-form-area').style.display = 'none';
+      document.getElementById('chatSuccess').classList.add('show');
+    }, 300);
+    return false;
+  }
 </script>
 
+<!-- end -->
 </body>
 </html>
-
