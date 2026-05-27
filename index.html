@@ -1423,7 +1423,7 @@
         <p>Every patient relationship runs through them personally — from the first phone call to long-term follow-up — and that's exactly the way they want it. Not a corporate chain. A husband-and-wife team that believes patients deserve to feel known by the people designing their devices.</p>
         <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.2rem;align-items:center;">
           <a href="#" data-modal="appt" class="btn btn-red">Contact Greg & Carolyn</a>
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=johnsonprosthetics@gmail.com&su=Question%20from%20your%20website" target="_blank" rel="noopener" class="btn btn-navy">✉ Email Us</a>
+          <a href="#" data-open-chat class="btn btn-navy">✉ Email Us</a>
         </div>
       </div>
     </div>
@@ -1536,7 +1536,7 @@
           </div>
           <div class="row">
             <div class="l">Email</div>
-            <div class="v"><a href="mailto:johnsonprosthetics@gmail.com">johnsonprosthetics@gmail.com</a></div>
+            <div class="v"><a href="#" data-open-chat>johnsonprosthetics@gmail.com</a></div>
           </div>
           <div class="row">
             <div class="l">Hours</div>
@@ -1565,7 +1565,7 @@
           </div>
           <div class="row">
             <div class="l">Email</div>
-            <div class="v"><a href="mailto:johnsonprosthetics@gmail.com">johnsonprosthetics@gmail.com</a></div>
+            <div class="v"><a href="#" data-open-chat>johnsonprosthetics@gmail.com</a></div>
           </div>
           <div class="row">
             <div class="l">Hours</div>
@@ -1594,7 +1594,7 @@
           </div>
           <div class="row">
             <div class="l">Email</div>
-            <div class="v"><a href="mailto:johnsonprosthetics@gmail.com">johnsonprosthetics@gmail.com</a></div>
+            <div class="v"><a href="#" data-open-chat>johnsonprosthetics@gmail.com</a></div>
           </div>
           <div class="row">
             <div class="l">Hours</div>
@@ -1626,7 +1626,7 @@
     <div class="modal-body">
       <div class="modal-quick">
         <strong>Prefer to call or email?</strong><br/>
-        <a href="mailto:johnsonprosthetics@gmail.com">johnsonprosthetics@gmail.com</a> · <a href="tel:+14177269964">Joplin</a> · <a href="tel:+14794853366">Fayetteville</a> · <a href="tel:+15016204800">Hot Springs</a>
+        <a href="#" data-open-chat>johnsonprosthetics@gmail.com</a> · <a href="tel:+14177269964">Joplin</a> · <a href="tel:+14794853366">Fayetteville</a> · <a href="tel:+15016204800">Hot Springs</a>
       </div>
       <form id="contactForm" onsubmit="return handleSubmit(event)">
         <div class="form-content">
@@ -1680,12 +1680,12 @@
             <textarea id="message" placeholder="Briefly describe your needs or questions..."></textarea>
           </div>
           <button type="submit" class="form-submit">Send My Request</button>
-          <div class="form-note">Your email app will open with this request ready to send to johnsonprosthetics@gmail.com.</div>
+          <div class="form-note">Your request goes directly to johnsonprosthetics@gmail.com. We'll respond within one business day.</div>
         </div>
         <div class="form-success" id="success">
           <div class="check">✓</div>
-          <h3>Request ready to send</h3>
-          <p>Your email app opened in a new window with the request pre-filled. Hit "Send" and we'll reach out within one business day.</p>
+          <h3>Thank you!</h3>
+          <p>Your appointment request has been sent. A team member will reach out within one business day.</p>
         </div>
       </form>
     </div>
@@ -1712,13 +1712,13 @@
         <input type="tel" id="chatPhone" placeholder="Your phone (optional)" />
         <textarea id="chatMessage" placeholder="How can we help?" required></textarea>
         <button type="submit" class="chat-send">Send Message</button>
-        <div class="chat-fineprint">By sending, your email app will open with this message ready to send to <a href="mailto:johnsonprosthetics@gmail.com">johnsonprosthetics@gmail.com</a>.</div>
+        <div class="chat-fineprint">Your message goes directly to johnsonprosthetics@gmail.com. We'll respond within one business day.</div>
       </form>
     </div>
     <div class="chat-success-msg" id="chatSuccess">
       <div class="check">✓</div>
-      <h4>Message ready to send</h4>
-      <p>Your email app opened in a new window with your message pre-filled. Just hit "Send" and we'll be in touch within one business day.</p>
+      <h4>Message sent!</h4>
+      <p>Thanks for reaching out. We'll get back to you within one business day.</p>
       <button class="reset" id="chatReset">Send Another</button>
     </div>
   </div>
@@ -1815,9 +1815,17 @@
     });
   })();
 
-  // Main Appointment form — opens visitor's email client pre-filled
-  function handleSubmit(e) {
+  // Web3Forms — sends submissions directly to johnsonprosthetics@gmail.com
+  const WEB3FORMS_KEY = '462571d3-1c42-4c77-af8c-cfb2b1a056a9';
+
+  // Main Appointment form — POSTs to Web3Forms
+  async function handleSubmit(e) {
     e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    const original = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
     const f = {
       fname:   document.getElementById('fname').value,
       lname:   document.getElementById('lname').value,
@@ -1827,24 +1835,38 @@
       reason:  document.getElementById('reason').value,
       message: document.getElementById('message').value || '(no additional notes)'
     };
-    const subject = `Appointment Request — ${f.fname} ${f.lname} (${f.loc})`;
-    const body =
-      `Hello Johnson Prosthetics & Orthotics,\n\n` +
-      `I'd like to request an appointment.\n\n` +
-      `Name: ${f.fname} ${f.lname}\n` +
-      `Email: ${f.email}\n` +
-      `Phone: ${f.phone}\n` +
-      `Preferred Location: ${f.loc}\n` +
-      `Reason: ${f.reason}\n\n` +
-      `Additional notes:\n${f.message}\n\n` +
-      `Thank you,\n${f.fname}`;
-    const mailto = `mailto:johnsonprosthetics@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
-    setTimeout(() => {
-      document.querySelector('.form-content').style.display = 'none';
-      document.getElementById('success').classList.add('show');
-      document.getElementById('success').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 300);
+    const body = {
+      access_key: WEB3FORMS_KEY,
+      subject: `Appointment Request — ${f.fname} ${f.lname} (${f.loc})`,
+      from_name: 'Johnson Prosthetics Website',
+      'First Name': f.fname,
+      'Last Name': f.lname,
+      'Email': f.email,
+      'Phone': f.phone,
+      'Preferred Location': f.loc,
+      'Reason': f.reason,
+      'Additional Notes': f.message
+    };
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      const data = await res.json();
+      if (data.success) {
+        document.querySelector('.form-content').style.display = 'none';
+        const ok = document.getElementById('success');
+        ok.classList.add('show');
+        ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        btn.textContent = 'Send failed — try again';
+        btn.disabled = false;
+      }
+    } catch (err) {
+      btn.textContent = 'Network error — try again';
+      btn.disabled = false;
+    }
     return false;
   }
 
@@ -1862,6 +1884,18 @@
     }
     toggle.addEventListener('click', () => setOpen(!panel.classList.contains('open')));
     close.addEventListener('click', () => setOpen(false));
+
+    // Any element with data-open-chat opens the chat widget
+    document.querySelectorAll('[data-open-chat]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        setOpen(true);
+        setTimeout(() => {
+          const first = document.getElementById('chatName');
+          if (first) first.focus();
+        }, 250);
+      });
+    });
     document.getElementById('chatReset').addEventListener('click', () => {
       document.getElementById('chatSuccess').classList.remove('show');
       document.querySelector('.chat-form-area').style.display = 'block';
@@ -1869,26 +1903,44 @@
     });
   })();
 
-  // Chat widget — opens visitor's email client pre-filled
-  function sendChatMessage(e) {
+  // Chat widget — POSTs to Web3Forms (no email client needed)
+  async function sendChatMessage(e) {
     e.preventDefault();
+    const btn = e.target.querySelector('.chat-send');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
     const name    = document.getElementById('chatName').value;
     const email   = document.getElementById('chatEmail').value;
     const phone   = document.getElementById('chatPhone').value || '(not provided)';
     const message = document.getElementById('chatMessage').value;
-    const subject = `Website Chat from ${name}`;
-    const body =
-      `Hi Johnson Prosthetics & Orthotics,\n\n` +
-      `${message}\n\n` +
-      `— ${name}\n` +
-      `Email: ${email}\n` +
-      `Phone: ${phone}`;
-    const mailto = `mailto:johnsonprosthetics@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
-    setTimeout(() => {
-      document.querySelector('.chat-form-area').style.display = 'none';
-      document.getElementById('chatSuccess').classList.add('show');
-    }, 300);
+    const body = {
+      access_key: WEB3FORMS_KEY,
+      subject: `Website Chat from ${name}`,
+      from_name: 'Johnson Prosthetics Website',
+      'Name': name,
+      'Email': email,
+      'Phone': phone,
+      'Message': message
+    };
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      const data = await res.json();
+      if (data.success) {
+        document.querySelector('.chat-form-area').style.display = 'none';
+        document.getElementById('chatSuccess').classList.add('show');
+      } else {
+        btn.textContent = 'Send failed — try again';
+        btn.disabled = false;
+      }
+    } catch (err) {
+      btn.textContent = 'Network error — try again';
+      btn.disabled = false;
+    }
     return false;
   }
 </script>
